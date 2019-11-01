@@ -14,5 +14,7 @@ namespace Modelos
         public byte[] Foto { get; set; }
 
         public List<Endereco> Enderecos { get; set; }
+
+        public List<Pedido> Pedidos { get; set; }
     }
 }

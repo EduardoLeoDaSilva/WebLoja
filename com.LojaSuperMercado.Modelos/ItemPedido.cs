@@ -8,9 +8,10 @@ namespace Modelos
     {
         public int ItemPedidoId { get; set; }
         public Pedido Pedido { get; set; }
-
         public int Quantidade { get; set; }
 
         public decimal Preco { get; set; }
+
+        public List<Produto> Produtos { get; set; }
     }
 }

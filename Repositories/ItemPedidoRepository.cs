@@ -1,10 +1,15 @@
-﻿using System;
+﻿using Modelos;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Repositories
 {
-    class ItemPedidoRepository
+    public class ItemPedidoRepository : BaseRepository<ItemPedido>
     {
+        public ItemPedidoRepository(ApplicationContext context) : base(context.Set<ItemPedido>())
+        {
+
+        }
     }
 }

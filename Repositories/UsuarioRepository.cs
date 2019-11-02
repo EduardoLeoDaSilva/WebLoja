@@ -1,10 +1,18 @@
-﻿using System;
+﻿using Modelos;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Repositories
 {
-    class UsuarioRepository
+    public class UsuarioRepository : BaseRepository<Usuario>, IUsuarioRepository
     {
+
+        public UsuarioRepository(ApplicationContext context ) : base(context.Set<Usuario>())
+        {
+
+        }
+
+
     }
 }

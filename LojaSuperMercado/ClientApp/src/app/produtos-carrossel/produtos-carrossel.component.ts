@@ -6,6 +6,6 @@ import  'bootstrap'
   templateUrl: './produtos-carrossel.component.html',
   styleUrls: ['./produtos-carrossel.component.css']
 })
-export class ProdutosCarrossel {
+export class ProdutosCarrosselComponent {
 
 }

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Repositories
 {
-    public class BaseRepository<E> where E : class
+    public class BaseRepository<E> : IBaseRepository<E> where E : class
     {
 
         private readonly DbSet<E> _dbSet;
@@ -19,26 +19,19 @@ namespace Repositories
 
         public void Gravar(E e)
         {
-            try
-            {
-                if(e != null)
-                {
-                    _dbSet.Add(e);
-                    return;
-                }
-                throw new Exception("Erro ao tentar salvar");
-            }
-            catch (Exception err)
-            {
 
-                throw new Exception("Erro: "+ err.Message);
+            if (e != null)
+            {
+                _dbSet.Add(e);
+                return;
             }
+            throw new Exception("Erro ao tentar salvar");
         }
 
         public List<E> findAll()
         {
             var dadosBd = _dbSet.ToList();
-            if(dadosBd.Count > 0)
+            if (dadosBd.Count > 0)
             {
                 return dadosBd;
             }
@@ -50,33 +43,23 @@ namespace Repositories
 
         public void Update(E e)
         {
-            try
-            {
-                if(e != null)
-                {
-                _dbSet.Update(e);
-                }
-                throw new Exception("Erro ao tentar atualizar!");
-            }
-            catch (Exception err)
-            {
 
-                throw  new Exception($"Erro: {err.Message}");
+            if (e != null)
+            {
+                _dbSet.Update(e);
             }
+            throw new Exception("Erro ao tentar atualizar!");
+
         }
 
         public void Excluir(E ent)
         {
-
-            try
+            if (ent != null)
             {
                 _dbSet.Remove(ent);
             }
-            catch (Exception err)
-            {
+            throw new Exception("Erro ao tentar Excluir");
 
-                throw new Exception("Erro: " + err.Message);
-            }
         }
 
     }

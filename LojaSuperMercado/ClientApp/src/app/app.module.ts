@@ -10,8 +10,9 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { LoginComponent } from './login/login.component';
-import { ProdutosCarrossel } from './produtos-carrossel/produtos-carrossel.component';
+import { ProdutosCarrosselComponent } from './produtos-carrossel/produtos-carrossel.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
+import { UsuarioServico } from './servicos/usuario.servico';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { CadastroComponent } from './cadastro/cadastro.component';
     CounterComponent,
     FetchDataComponent,
     LoginComponent,
-    ProdutosCarrossel,
+    ProdutosCarrosselComponent,
     CadastroComponent
   ],
   imports: [
@@ -31,11 +32,11 @@ import { CadastroComponent } from './cadastro/cadastro.component';
     RouterModule.forRoot([
       { path: '', component: LoginComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'produtos', component: ProdutosCarrossel },
+      { path: 'produtos', component: ProdutosCarrosselComponent },
       { path: 'cadastro', component: CadastroComponent }
     ])
   ],
-  providers: [],
+  providers: [UsuarioServico],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

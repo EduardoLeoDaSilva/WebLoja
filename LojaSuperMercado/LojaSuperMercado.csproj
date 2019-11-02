@@ -15,6 +15,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.4" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,15 +26,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\src\app\autorizacao\guardaRotas.ts" />
     <None Remove="ClientApp\src\app\cadastro\cadastro.component.css" />
     <None Remove="ClientApp\src\app\cadastro\cadastro.component.html" />
     <None Remove="ClientApp\src\app\cadastro\cadastro.component.ts" />
     <None Remove="ClientApp\src\app\login\login.component.ts" />
+    <None Remove="ClientApp\src\app\modelos\endereco.ts" />
+    <None Remove="ClientApp\src\app\modelos\usuario.modelo.ts" />
+    <None Remove="ClientApp\src\app\servicos\usuario.servico.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\com.LojaSuperMercado.Modelos\Modelos.csproj" />
+    <ProjectReference Include="..\Repositories\Repositories.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,13 +45,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\app\autorizacao\guardaRotas.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\cadastro\cadastro.component.html" />
     <TypeScriptCompile Include="ClientApp\src\app\cadastro\cadastro.component.css">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\src\app\cadastro\cadastro.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\login\login.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\modelos\endereco.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\modelos\usuario.modelo.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\servicos\usuario.servico.ts" />
   </ItemGroup>
 
   <ItemGroup>

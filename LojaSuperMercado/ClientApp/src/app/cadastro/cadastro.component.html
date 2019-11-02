@@ -7,16 +7,16 @@
         <div class="form-row">
           <div class="form-group col-md-4">
             <label for="inputNome">Nome</label>
-            <input type="text" class="form-control" id="inputNome" placeholder="Nome">
+            <input type="text" class="form-control"  name="nome" (input)="cadastrar()" [(ngModel)]="usuario.nome" id="inputNome" placeholder="Nome">
           </div>
           <div class="form-group col-md-4">
             <label for="inputCpf">CPF</label>
-            <input type="text" class="form-control" id="inputCpf" placeholder="CPF">
+            <input type="text" class="form-control" name="cpf"  [(ngModel)]="usuario.cpf" id="inputCpf" placeholder="CPF">
           </div>
           <div class="form-group col-md-4">
             <label for="inputSexo">Sexo</label>
-            <select id="inputSexo" class="form-control">
-              <option value="masculino" selected>Masculino</option>
+            <select id="inputSexo" class="form-control" name="sexo"  [(ngModel)]="usuario.sexo">
+              <option value="masculino" selected >Masculino</option>
               <option value="feminino">Feminino</option>
             </select>
           </div>
@@ -24,25 +24,25 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputEmail4">Email</label>
-            <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+            <input type="email" class="form-control" name="email" [(ngModel)]="usuario.email" id="inputEmail4" placeholder="Email">
           </div>
           <div class="form-group col-md-6">
             <label for="inputPassword4">Senha</label>
-            <input type="password" class="form-control" id="inputPassword4" placeholder="Senha">
+            <input type="password" class="form-control" name="senha" id="inputPassword4"  [(ngModel)]="usuario.senha" placeholder="Senha">
           </div>
         </div>
         <div class="form-group">
           <label for="inputAddress">Endereço</label>
-          <input type="text" class="form-control" id="inputAddress" placeholder="Rua, Estrada, Bairro">
+          <input type="text" class="form-control" id="inputAddress" name="rua" [(ngModel)]="usuario.endereco.rua" placeholder="Rua, Estrada, Bairro">
         </div>
         <div class="form-group">
           <label for="inputAddress2">Cidade</label>
-          <input type="text" class="form-control" id="inputAddress2" placeholder="Cidade">
+          <input type="text" class="form-control" id="inputAddress2" name="cidade"  [(ngModel)]="usuario.endereco.cidade" placeholder="Cidade">
         </div>
         <div class="form-row">
           <div class="form-group col-md-12">
             <label for="inputAddress3">Estado</label>
-            <input type="text" class="form-control" id="inputAddress3" placeholder="Estado">
+            <input type="text" class="form-control" id="inputAddress3" name="estado"  [(ngModel)]="usuario.endereco.estado" placeholder="Estado">
           </div>
         </div>
         <button type="submit" class="btn btn-primary">Cadastrar</button>

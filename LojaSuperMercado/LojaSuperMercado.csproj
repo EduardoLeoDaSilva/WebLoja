@@ -25,7 +25,35 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\autorizacao\guardaRotas.ts" />
+    <None Remove="ClientApp\src\app\cadastro\cadastro.component.css" />
+    <None Remove="ClientApp\src\app\cadastro\cadastro.component.html" />
+    <None Remove="ClientApp\src\app\cadastro\cadastro.component.ts" />
+    <None Remove="ClientApp\src\app\login\login.component.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\com.LojaSuperMercado.Modelos\Modelos.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\src\app\pedido-resumo\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\autorizacao\guardaRotas.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\cadastro\cadastro.component.html" />
+    <TypeScriptCompile Include="ClientApp\src\app\cadastro\cadastro.component.css">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\cadastro\cadastro.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\login\login.component.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Update="ClientApp\src\app\cadastro\cadastro.component.html">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

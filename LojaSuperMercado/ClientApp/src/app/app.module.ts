@@ -13,6 +13,11 @@ import { LoginComponent } from './login/login.component';
 import { ProdutosCarrosselComponent } from './produtos-carrossel/produtos-carrossel.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { UsuarioServico } from './servicos/usuario.servico';
+import { NgxMaskModule } from 'ngx-mask'
+import { GuardaRotas } from './autorizacao/GuardaRotas';
+import { ProdutoServico } from './servicos/produto.servico';
+
+
 
 @NgModule({
   declarations: [
@@ -23,20 +28,23 @@ import { UsuarioServico } from './servicos/usuario.servico';
     FetchDataComponent,
     LoginComponent,
     ProdutosCarrosselComponent,
-    CadastroComponent
+    CadastroComponent,
+
   ],
+
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    NgxMaskModule.forRoot(),
     RouterModule.forRoot([
       { path: '', component: LoginComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'produtos', component: ProdutosCarrosselComponent },
+      { path: 'produtos', component: ProdutosCarrosselComponent},
       { path: 'cadastro', component: CadastroComponent }
     ])
   ],
-  providers: [UsuarioServico],
+  providers: [UsuarioServico, ProdutoServico],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

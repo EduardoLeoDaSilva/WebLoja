@@ -29,6 +29,10 @@ namespace Repositories
             modelBuilder.Entity<Pedido>().HasKey(x => x.PedidoId);
             modelBuilder.Entity<Usuario>().HasMany(x => x.Pedidos).WithOne(x => x.Usuario);
 
+            modelBuilder.Entity<Usuario>().HasIndex(x => x.CPF).IsUnique();
+            modelBuilder.Entity<Usuario>().HasIndex(x => x.Email).IsUnique();
+
+
 
             ///Pedido e ItemPedido
             modelBuilder.Entity<ItemPedido>().HasKey(x => x.ItemPedidoId);
@@ -37,7 +41,7 @@ namespace Repositories
             /////ItemPedido e Produto
             ///
             modelBuilder.Entity<Produto>().HasKey(x => x.ProdutoId);
-            modelBuilder.Entity<ItemPedido>().HasMany(x => x.Produtos);
+            modelBuilder.Entity<ItemPedido>().HasOne(x => x.Produto);
 
         }
     }

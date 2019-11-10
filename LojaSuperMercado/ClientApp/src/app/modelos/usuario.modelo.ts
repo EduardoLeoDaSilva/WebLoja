@@ -7,5 +7,6 @@ export class Usuario {
   cpf: string;
   email: string;
   senha: string;
-  endereco : Endereco
+  endereco: Endereco;
+  foto: any;
 }

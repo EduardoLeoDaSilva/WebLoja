@@ -10,7 +10,7 @@ namespace Repositories
     public class BaseRepository<E> : IBaseRepository<E> where E : class
     {
 
-        private readonly DbSet<E> _dbSet;
+        public  DbSet<E> _dbSet { get; private set; }
 
         public BaseRepository(DbSet<E> dbset)
         {

@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+using LojaSuperMercado.Extencoes.RelalatedToModels;
+using LojaSuperMercado.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using Modelos;
+using Newtonsoft.Json;
 using Repositories;
 
 namespace LojaSuperMercado.Controllers
@@ -13,23 +11,23 @@ namespace LojaSuperMercado.Controllers
     [ApiController]
     public class UsuarioController : ControllerBase
     {
-        private readonly UsuarioRepository _usuarioRepository;
+        private readonly IUsuarioRepository _usuarioRepository;
         private readonly ApplicationContext _context;
 
-        public UsuarioController(UsuarioRepository usuarioRepository, ApplicationContext context)
+        public UsuarioController(IUsuarioRepository usuarioRepository, ApplicationContext context)
         {
             _usuarioRepository = usuarioRepository;
             _context = context;
         }
 
         [HttpPost]
-        public ActionResult Salvar([FromBody]Usuario usuario)
+        public ActionResult Salvar([FromForm]UsuarioViewModel usuario)
         {
             try
             {
-                _usuarioRepository.Gravar(usuario);
+                _usuarioRepository.Gravar(usuario.ParaModelo());
                 _context.SaveChanges();
-                return Ok(new { msg = "Usuario cadastrado com sucesso" });
+                return Content(JsonConvert.SerializeObject("Usuario cadastrado com sucesso"));
             }
             catch (Exception e)
             {

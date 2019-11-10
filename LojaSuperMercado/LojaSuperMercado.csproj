@@ -26,12 +26,26 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\imagens\produtos\produto-10.jfif" />
+    <Content Remove="wwwroot\imagens\produtos\produto-11.jfif" />
+    <Content Remove="wwwroot\imagens\produtos\produto-12.jfif" />
+    <Content Remove="wwwroot\imagens\produtos\produto-13.jfif" />
+    <Content Remove="wwwroot\imagens\produtos\produto-14.jfif" />
+    <Content Remove="wwwroot\imagens\produtos\produto-15.jfif" />
+    <Content Remove="wwwroot\imagens\produtos\produto-16.jfif" />
+    <Content Remove="wwwroot\imagens\produtos\produto-17.jfif" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ClientApp\src\app\autorizacao\GuardaRotas.ts" />
     <None Remove="ClientApp\src\app\cadastro\cadastro.component.css" />
     <None Remove="ClientApp\src\app\cadastro\cadastro.component.html" />
     <None Remove="ClientApp\src\app\cadastro\cadastro.component.ts" />
     <None Remove="ClientApp\src\app\login\login.component.ts" />
     <None Remove="ClientApp\src\app\modelos\endereco.ts" />
+    <None Remove="ClientApp\src\app\modelos\produto.modelo.ts" />
     <None Remove="ClientApp\src\app\modelos\usuario.modelo.ts" />
+    <None Remove="ClientApp\src\app\servicos\produto.servico.ts" />
     <None Remove="ClientApp\src\app\servicos\usuario.servico.ts" />
   </ItemGroup>
 
@@ -45,6 +59,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\imagens\produtos\produto-10.jfif" />
+    <None Include="wwwroot\imagens\produtos\produto-11.jfif" />
+    <None Include="wwwroot\imagens\produtos\produto-12.jfif" />
+    <None Include="wwwroot\imagens\produtos\produto-13.jfif" />
+    <None Include="wwwroot\imagens\produtos\produto-14.jfif" />
+    <None Include="wwwroot\imagens\produtos\produto-15.jfif" />
+    <None Include="wwwroot\imagens\produtos\produto-16.jfif" />
+    <None Include="wwwroot\imagens\produtos\produto-17.jfif" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\autorizacao\GuardaRotas.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\cadastro\cadastro.component.html" />
     <TypeScriptCompile Include="ClientApp\src\app\cadastro\cadastro.component.css">
       <SubType>Code</SubType>
@@ -52,7 +78,9 @@
     <TypeScriptCompile Include="ClientApp\src\app\cadastro\cadastro.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\login\login.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\modelos\endereco.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\modelos\produto.modelo.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\modelos\usuario.modelo.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\servicos\produto.servico.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\servicos\usuario.servico.ts" />
   </ItemGroup>
 

@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable } from 'rxjs';
-import { Router } from '@angular/router'
+import { Router, ActivatedRoute } from '@angular/router'
 import { Usuario } from '../modelos/usuario.modelo';
 
 
@@ -12,20 +12,27 @@ export class UsuarioServico {
 
   private _baseUrl: string;
 
-  constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+  constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string, private route: ActivatedRoute) {
     this._baseUrl = baseUrl;
   }
 
 
-  public salvar(usuario: Usuario): Observable<string> {
+  public salvar(usuario: Usuario): Observable<Usuario> {
 
-    const headers = new HttpHeaders().set('content-type', 'application/json');
+    var formData = new FormData();
 
-    var body = {
-      usuario: usuario
-    }
+    formData.append("nome", usuario.nome);
+    formData.append("sexo", usuario.sexo);
+    formData.append("cpf", usuario.cpf);
+    formData.append("email", usuario.email);
+    formData.append("senha", usuario.senha);
+    formData.append("enderecos[0].rua", usuario.endereco.rua);
+    formData.append("enderecos[0].cidade",usuario.endereco.cidade);
+    formData.append("enderecos[0].estado", usuario.endereco.estado);
+    formData.append("foto", usuario.foto);
 
-   return  this.http.post<string>(`${this._baseUrl}/api/usuario`, body, { headers });
+
+    return this.http.post<Usuario>(`${this._baseUrl}api/usuario`, formData);
   }
 
 

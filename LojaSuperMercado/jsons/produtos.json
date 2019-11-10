@@ -1,0 +1,44 @@
+[
+{
+    "nome": "Iphone",
+    "codigoProduto": "10",
+    "marca": "Apple",
+    "preco": "3000"
+},
+{
+    "nome": "Computador",
+    "codigoProduto": "11",
+    "marca": "ACER",
+    "preco": "10000"
+},{
+    "nome": "NOTEBOOK",
+    "codigoProduto": "12",
+    "marca": "POSITIVO",
+    "preco": "900"
+},{
+    "nome": "S10",
+    "codigoProduto": "13",
+    "marca": "Samsung",
+    "preco": "1200"
+},{
+    "nome": "XBOX",
+    "codigoProduto": "14",
+    "marca": "Microsoft",
+    "preco": "1000"
+},{
+    "nome": "Playstation",
+    "codigoProduto": "15",
+    "marca": "Sony",
+    "preco": "1000"
+},{
+    "nome": "TV",
+    "codigoProduto": "16",
+    "marca": "LG",
+    "preco": "2000"
+},{
+    "nome": "Mouse",
+    "codigoProduto": "17",
+    "marca": "LOGITECH",
+    "preco": "200"
+}
+]

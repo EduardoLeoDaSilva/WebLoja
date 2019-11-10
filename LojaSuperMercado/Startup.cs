@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Repositories;
+using System;
 
 namespace LojaSuperMercado
 {
@@ -22,10 +23,11 @@ namespace LojaSuperMercado
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
+            services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default"), x => x.MigrationsAssembly("LojaSuperMercado")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+            services.AddTransient<IProdutoRepository, ProdutoRepository>();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -35,7 +37,7 @@ namespace LojaSuperMercado
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -58,6 +60,9 @@ namespace LojaSuperMercado
                     name: "default",
                     template: "{controller}/{action=Index}/{id?}");
             });
+
+
+            serviceProvider.GetService<IProdutoRepository>().GravarProdutosDeJson("./jsons/produtos.json");
 
             app.UseSpa(spa =>
             {

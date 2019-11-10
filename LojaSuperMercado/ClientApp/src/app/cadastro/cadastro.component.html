@@ -3,49 +3,118 @@
   <br />
   <div class='card style="width: 18rem;'>
     <div class="card-body">
-      <form>
+
+
+      <div class="alert alert-danger" role="alert" *ngIf="msgGeral">
+        {{msgGeral}}
+      </div>
+
+      <div class="alert alert-success" role="alert" *ngIf="msgAPIPosCadastro">
+        {{msgAPIPosCadastro}}
+      </div>
+
+      <form enctype="multipart/form-data">
+
+
         <div class="form-row">
           <div class="form-group col-md-4">
             <label for="inputNome">Nome</label>
-            <input type="text" class="form-control"  name="nome" (input)="cadastrar()" [(ngModel)]="usuario.nome" id="inputNome" placeholder="Nome">
+            <input type="text" class="form-control" name="nome" #nome="ngModel" [(ngModel)]="usuario.nome" id="inputNome" placeholder="Nome" required>
+            <div class="valid-feedback visivel" *ngIf="nome.valid || !nome.errors?.required && (nome.dirty || nome.touched)">
+              Parece Bom!
+            </div>
+            <div class="invalid-feedback visivel" *ngIf="(nome.invalid || nome.errors?.required) && (nome.dirty || nome.touched)">
+              Insira um Nome
+            </div>
           </div>
           <div class="form-group col-md-4">
             <label for="inputCpf">CPF</label>
-            <input type="text" class="form-control" name="cpf"  [(ngModel)]="usuario.cpf" id="inputCpf" placeholder="CPF">
+            <input type="text" class="form-control" #cpf="ngModel" name="cpf" (input)="validarCpf()" mask="000.000.000-00" [(ngModel)]="usuario.cpf" id="inputCpf" placeholder="CPF" required>
+            <div class="valid-feedback visivel" *ngIf="(cpf.valid && !cpf.errors?.required && cpfMsg == 'CPF válido') && (cpf.dirty || cpf.touched )">
+              Parece Bom!
+            </div>
+            <div class="invalid-feedback visivel" *ngIf="(cpf.invalid || cpf.errors?.required || cpfMsg == 'CPF inválido') && (cpf.touched || cpf.dirty)">
+              {{cpfMsg}}
+            </div>
           </div>
-          <div class="form-group col-md-4">
-            <label for="inputSexo">Sexo</label>
-            <select id="inputSexo" class="form-control" name="sexo"  [(ngModel)]="usuario.sexo">
-              <option value="masculino" selected >Masculino</option>
-              <option value="feminino">Feminino</option>
-            </select>
-          </div>
+
         </div>
+
+
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputEmail4">Email</label>
-            <input type="email" class="form-control" name="email" [(ngModel)]="usuario.email" id="inputEmail4" placeholder="Email">
+            <input type="email" class="form-control" #email="ngModel" name="email" [(ngModel)]="usuario.email" id="inputEmail4" placeholder="Email" required email>
+            <div class="valid-feedback visivel" *ngIf="(email.valid && !email.errors?.required) &&(email.dirty || email.touched)">
+              Parece Bom!
+            </div>
+            <div class="invalid-feedback visivel" *ngIf="(email.invalid || email.errors?.required) &&(email.dirty || email.touched)">
+              Insira um email válido
+            </div>
+
           </div>
+
           <div class="form-group col-md-6">
             <label for="inputPassword4">Senha</label>
-            <input type="password" class="form-control" name="senha" id="inputPassword4"  [(ngModel)]="usuario.senha" placeholder="Senha">
+            <input type="password" class="form-control" #senha="ngModel" name="senha" id="inputPassword4" [(ngModel)]="usuario.senha" placeholder="Senha" required minlength="6">
+            <div class="valid-feedback visivel" *ngIf="(senha.valid && !senha.errors?.required && !senha.errors?.minlength) &&(senha.dirty || senha.touched)">
+              Parece Bom!
+            </div>
+            <div class="invalid-feedback visivel" *ngIf="(senha.invalid || senha.errors?.required || senha.errors?.minlength) &&(senha.dirty || senha.touched)">
+              Insira um senha
+            </div>
           </div>
+
         </div>
+
+
         <div class="form-group">
-          <label for="inputAddress">Endereço</label>
-          <input type="text" class="form-control" id="inputAddress" name="rua" [(ngModel)]="usuario.endereco.rua" placeholder="Rua, Estrada, Bairro">
+          <label for="inputAddress">Rua</label>
+          <input type="text" class="form-control" #rua="ngModel" id="inputAddress" name="rua" [(ngModel)]="usuario.endereco.rua" placeholder="Rua, Estrada, Bairro" required>
         </div>
+        <div class="valid-feedback visivel" *ngIf="(rua.valid && !rua.errors?.required) &&(rua.dirty || rua.touched)">
+          Parece Bom!
+        </div>
+        <div class="invalid-feedback visivel" *ngIf="(rua.invalid || rua.errors?.required) &&(rua.dirty || rua.touched)">
+          Insira um rua
+        </div>
+
         <div class="form-group">
           <label for="inputAddress2">Cidade</label>
-          <input type="text" class="form-control" id="inputAddress2" name="cidade"  [(ngModel)]="usuario.endereco.cidade" placeholder="Cidade">
+          <input type="text" class="form-control" #cidade="ngModel" id="inputAddress2" name="cidade" [(ngModel)]="usuario.endereco.cidade" placeholder="Cidade" required>
         </div>
+        <div class="valid-feedback visivel" *ngIf="(cidade.valid || !cidade.errors?.required) &&(cidade.dirty || cidade.touched)">
+          Parece Bom!
+        </div>
+        <div class="invalid-feedback visivel" *ngIf="(cidade.invalid || cidade.errors?.required) &&(cidade.dirty || cidade.touched)">
+          Insira uma cidade.
+        </div>
+
         <div class="form-row">
           <div class="form-group col-md-12">
             <label for="inputAddress3">Estado</label>
-            <input type="text" class="form-control" id="inputAddress3" name="estado"  [(ngModel)]="usuario.endereco.estado" placeholder="Estado">
+            <input type="text" class="form-control" #estado="ngModel" id="inputAddress3" name="estado" [(ngModel)]="usuario.endereco.estado" placeholder="Estado" required>
           </div>
         </div>
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <div class="valid-feedback visivel" *ngIf="(estado.valid || !estado.errors?.required) &&(estado.dirty || estado.touched)">
+          Parece Bom!
+        </div>
+        <div class="invalid-feedback visivel" *ngIf="(estado.invalid || estado.errors?.required) &&(estado.dirty || estado.touched)">
+          Insira um estado.
+        </div>
+
+        <div class="form-group">
+          <label for="foto">Foto perfil</label>
+          <input type="file" id="foto" name="foto" (change)="teste($event)" required class="form-control-file">
+          <img  [src]="fotoURL" class="rounded float-right imagem-pequena" >
+          <div class="valid-feedback visivel" *ngIf="isFotoOk">
+            Parece Bom!
+          </div>
+          <div class="invalid-feedback visivel" *ngIf="isFotoOk == false">
+            Selecione uma foto.
+          </div>
+        </div>
+        <button (click)="cadastrar()" class="btn btn-primary">Cadastrar</button>
       </form>
     </div>
   </div>

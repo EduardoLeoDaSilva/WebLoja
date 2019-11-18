@@ -9,6 +9,7 @@ using Modelos;
 using Newtonsoft.Json;
 using Repositories;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LojaSuperMercado.Controllers
 {
@@ -22,6 +23,7 @@ namespace LojaSuperMercado.Controllers
             _produtoRepository = produtoRepository;
         }
 
+    [Authorize]
         [HttpGet]
         public IActionResult ObterTodos()
         {
@@ -33,6 +35,7 @@ namespace LojaSuperMercado.Controllers
             return NoContent();
         }
 
+        [AllowAnonymous]
         [HttpGet("obterFoto")]
         public IActionResult ObterFotoProduto(int codigo)
         {

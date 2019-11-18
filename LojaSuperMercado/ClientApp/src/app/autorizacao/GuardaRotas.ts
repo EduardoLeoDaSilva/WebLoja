@@ -15,9 +15,9 @@ export class GuardaRotas implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean  {
 
 
-      let isAutenticado = sessionStorage.getItem("autenticado");
+      let isAutenticado = sessionStorage.getItem("userEmail");
 
-      if (isAutenticado == '1') {
+      if (isAutenticado != '' || isAutenticado != null || isAutenticado != undefined) {
         return true;
       } else {
         this.router.navigate(['/login'], { queryParams: { returnURL: state.url } });

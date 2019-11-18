@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="col-md-12 order-md-2 mb-4 maior">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-muted">Seu carrinho</span>
+            <span class="badge badge-secondary badge-pill">{{quantidadeItens}}</span>
+        </h4>
+        <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let item of itensPedidos">
+                <div class="container ">
+                    <div class="row" >
+                        <div class="col-md-3">
+                            <img src="/api/Produto/obterFoto?codigo={{item.produto.codigoProduto}}"
+                                class="rounded float-left limite-img" alt="...">
+                            <h6 class="my-0">{{item.produto.nome}}</h6>
+                        </div>
+                        <div class="col-md-3">
+                            <small class="text-muted">Produto {{item.produto.nome}}</small>
+                        </div>
+                        <div class="col-md-3">
+                            <label id="labelQuantidade" class="na-linha" for="quantidade">Quantidade:</label>
+                               <input type="number" id="quantidade" (change)="atualizarQuant(item.itemPedidoId,this.$event.target.value)" class="form-control na-linha" value="{{item.quantidade}}">
+                        </div>
+
+                        <div class="col-md-3">
+
+                                <span class="text-muted">Valor: ${{item.produto.preco}}</span>
+                            </div>
+                    </div>
+
+                </div>
+
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+                <span>Total Reais</span>
+                <strong>$ {{valorTotal}} </strong>
+            </li>
+        </ul>
+
+        <form class="card p-2">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Promo code">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-secondary">Redeem</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

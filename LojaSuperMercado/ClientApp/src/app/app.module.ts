@@ -16,6 +16,9 @@ import { UsuarioServico } from './servicos/usuario.servico';
 import { NgxMaskModule } from 'ngx-mask'
 import { GuardaRotas } from './autorizacao/GuardaRotas';
 import { ProdutoServico } from './servicos/produto.servico';
+import { PedidoResumoComponent } from './pedido-resumo/pedido-resumo.component';
+import { PedidoServico } from './servicos/pedido.servico';
+import { LoginServico } from './servicos/login.servico';
 
 
 
@@ -29,6 +32,7 @@ import { ProdutoServico } from './servicos/produto.servico';
     LoginComponent,
     ProdutosCarrosselComponent,
     CadastroComponent,
+    PedidoResumoComponent
 
   ],
 
@@ -40,11 +44,12 @@ import { ProdutoServico } from './servicos/produto.servico';
     RouterModule.forRoot([
       { path: '', component: LoginComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'produtos', component: ProdutosCarrosselComponent},
-      { path: 'cadastro', component: CadastroComponent }
+      { path: 'produtos', component: ProdutosCarrosselComponent, canActivate: [GuardaRotas]},
+      { path: 'cadastro', component: CadastroComponent },
+      {path: 'resumo', component: PedidoResumoComponent, canActivate: [GuardaRotas]}
     ])
   ],
-  providers: [UsuarioServico, ProdutoServico],
+  providers: [UsuarioServico, ProdutoServico, PedidoServico, LoginServico],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

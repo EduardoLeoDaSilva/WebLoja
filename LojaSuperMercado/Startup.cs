@@ -1,13 +1,17 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using Repositories;
 using System;
+using System.Text;
 
 namespace LojaSuperMercado
 {
@@ -28,7 +32,30 @@ namespace LojaSuperMercado
 
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
             services.AddTransient<IProdutoRepository, ProdutoRepository>();
+            services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddTransient<IItemPedidoRepository, ItemPedidoRepository>();
+            services.AddTransient<IPedidoRepository, PedidoRepository>();
 
+            services.AddAuthentication(x => {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(x =>
+           {
+               x.TokenValidationParameters = new TokenValidationParameters
+               {
+                   ValidAudience = "Web",
+                   ValidIssuer = "WebLojaApp",
+                   IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["SegredoLogin"])),
+                   ValidateIssuerSigningKey = true,
+                   ValidateAudience = true,
+                   ValidateIssuer = true,
+                   
+               };
+
+           });
+
+            services.AddSession();
+            services.AddMemoryCache();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -53,7 +80,8 @@ namespace LojaSuperMercado
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
-
+            app.UseSession();
+            app.UseAuthentication();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

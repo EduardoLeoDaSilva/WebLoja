@@ -14,11 +14,10 @@ export class ProdutoServico {
     this.baseURL = baseURL;
   }
 
-  obterListaProdutos(): Observable<Array<Produto>> {
+  obterListaProdutos(token: string): Observable<Array<Produto>> {
 
-    const headers = new HttpHeaders().set('content-type', 'application/json');
-
-    return this.http.get<Array<Produto>>(`${this.baseURL}/api/Produto`)
+    const headers = new HttpHeaders().set("Authorization", `Bearer ${token}`);
+    return this.http.get<Array<Produto>>(`${this.baseURL}/api/Produto`, {headers})
 
   }
 

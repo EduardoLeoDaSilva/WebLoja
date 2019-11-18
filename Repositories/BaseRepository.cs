@@ -17,7 +17,7 @@ namespace Repositories
             this._dbSet = dbset;
         }
 
-        public void Gravar(E e)
+        public virtual void Gravar(E e)
         {
 
             if (e != null)
@@ -25,10 +25,13 @@ namespace Repositories
                 _dbSet.Add(e);
                 return;
             }
-            throw new Exception("Erro ao tentar salvar");
+            else
+            {
+                throw new Exception("Erro ao tentar Salvar!");
+            }
         }
 
-        public List<E> findAll()
+        public virtual List<E> findAll()
         {
             var dadosBd = _dbSet.ToList();
             if (dadosBd.Count > 0)
@@ -41,24 +44,30 @@ namespace Repositories
             }
         }
 
-        public void Update(E e)
+        public virtual void Update(E e)
         {
 
             if (e != null)
             {
                 _dbSet.Update(e);
             }
+            else
+            {
             throw new Exception("Erro ao tentar atualizar!");
+            }
 
         }
 
-        public void Excluir(E ent)
+        public virtual void Excluir(E ent)
         {
             if (ent != null)
             {
                 _dbSet.Remove(ent);
             }
-            throw new Exception("Erro ao tentar Excluir");
+            else
+            {
+                throw new Exception("Erro ao tentar Excluir!");
+            }
 
         }
 

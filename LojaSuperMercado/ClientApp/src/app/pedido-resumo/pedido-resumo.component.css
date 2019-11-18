@@ -1,0 +1,16 @@
+.maior {
+    width: 100%;
+    padding: 15px;
+    margin-top: 120px;
+  }
+  
+
+  .limite-img{
+max-width: 30px;
+max-height: 50px;
+  }
+
+  .na-linha{
+    display: inline;
+    width: 54px;
+  }
